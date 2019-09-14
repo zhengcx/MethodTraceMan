@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>cn.cxzheng</groupId>
+  <artifactId>asmtraceman-plugin</artifactId>
+  <versioning>
+    <release>0.0.1-test</release>
+    <versions>
+      <version>0.0.1-test</version>
+    </versions>
+    <lastUpdated>20190905022459</lastUpdated>
+  </versioning>
+</metadata>

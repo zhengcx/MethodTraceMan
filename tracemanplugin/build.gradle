@@ -1,0 +1,106 @@
+apply plugin: 'groovy'
+apply plugin: 'java'
+apply plugin: 'maven'
+apply plugin: 'kotlin'
+apply plugin: "com.gradle.plugin-publish"
+
+dependencies {
+    compile gradleApi()
+    compile localGroovy()
+
+    //这里根据插件需要，添加对应的依赖
+    compile 'com.android.tools.build:gradle:3.0.0'
+    compile 'org.javassist:javassist:3.20.0-GA'
+}
+
+repositories {
+    jcenter()
+}
+
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "com.gradle.publish:plugin-publish-plugin:0.9.7"
+    }
+}
+
+repositories {
+    mavenCentral()
+    jcenter()
+}
+
+version = "1.0.1"    //配置插件的版本号
+group = "cn.cxzheng.methodTracePlugin"   //插件的群组，插件的classpath会用到
+
+pluginBundle {
+
+    website = 'https://github.com/zhengcx/MethodTraceMan'
+    vcsUrl = 'https://github.com/zhengcx/MethodTraceMan.git'
+    description = 'method time consuming trace(方法耗时插桩)'  //插件描述
+    tags = ['方法耗时', 'method', 'trace', 'asm','Android']  //插件的tag。可以通过这个在插件门户上搜索
+
+    plugins {
+        greetingsPlugin {
+            id = 'cn.cxzheng.asmtraceman'   //插件的id，到时候apply的插件id
+            displayName = 'MethodTraceMan Plugin'
+        }
+    }
+}
+
+
+
+
+sourceSets {
+    main {
+        groovy {
+            srcDir '../tracemanplugin/src/main/groovy'
+        }
+
+        java {
+            srcDir '../tracemanplugin/src/main/java'
+        }
+
+        resources {
+            srcDir '../tracemanplugin/src/main/resources'
+        }
+    }
+}
+
+
+
+dependencies {
+    compile fileTree(include: ['*.jar'], dir: 'libs')
+    compile gradleApi()
+    compile localGroovy()
+    compile group: 'org.ow2.asm', name: 'asm', version: '5.1'
+    compile group: 'org.ow2.asm', name: 'asm-commons', version: '5.1'
+    compile 'com.android.tools.build:gradle:3.2.1'
+    compile 'com.android.tools.lint:lint:26.0.1'
+    compile 'com.android.tools.lint:lint-api:26.0.1'
+    compile 'com.android.tools.lint:lint-checks:26.0.1'
+}
+
+compileGroovy {
+    dependsOn tasks.getByPath('compileKotlin')
+    classpath += files(compileKotlin.destinationDir)
+}
+
+/**
+ * 上传到本地Maven
+ */
+uploadArchives {
+    repositories.mavenDeployer {
+        repository(url: uri('../repo'))
+        pom.groupId = 'cn.cxzheng'
+        pom.artifactId = 'asmtraceman-plugin'
+        pom.version = "0.0.1-test"
+    }
+}
+
+
+
+

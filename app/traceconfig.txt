@@ -1,0 +1,11 @@
+#需插桩的包
+-tracepackage cn/cxzheng/asmtraceman
+
+#在需插桩的包下设置无需插桩的包
+-keeppackage cn/cxzheng/asmtraceman/test
+
+#在需插桩的包下设置无需插桩的类
+#-keepclass cn/cxzheng/asmtraceman/MainActivity
+
+#插桩代码所在类
+-beatclass cn/cxzheng/tracemanui/TraceMan
