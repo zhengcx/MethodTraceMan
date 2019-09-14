@@ -12,7 +12,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
-        classpath "cn.cxzheng:asmtraceman-plugin:0.0.1-test"
+//        classpath "cn.cxzheng:asmtraceman-plugin:0.0.1-test"
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -25,6 +25,7 @@ allprojects {
         maven {
             url uri('./repo')
         }
+        maven { url 'https://jitpack.io' }
     }
 }
 

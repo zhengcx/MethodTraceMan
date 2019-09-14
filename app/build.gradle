@@ -31,11 +31,12 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-    implementation project(':tracemanui')
+//    implementation project(':tracemanui')
+    implementation 'com.github.zhengcx:MethodTraceMan:1.0.0'
 }
 
-apply plugin: "cn.cxzheng.asmtraceman"
-traceMan {
-    open = true
-    traceConfigFile = "${project.projectDir}/traceconfig.txt"
-}
+//apply plugin: "cn.cxzheng.asmtraceman"
+//traceMan {
+//    open = true
+//    traceConfigFile = "${project.projectDir}/traceconfig.txt"
+//}
