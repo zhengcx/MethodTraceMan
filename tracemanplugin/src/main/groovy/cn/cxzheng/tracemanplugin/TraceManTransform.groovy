@@ -48,7 +48,6 @@ class TraceManTransform extends Transform {
         if (output == null || output.isEmpty()) {
             traceManConfig.output = project.getBuildDir().getAbsolutePath() + File.separator + "traceman_output"
         }
-        println '[MethodTraceMan]: output:' + traceManConfig.output
 
         if (traceManConfig.open) {
             //读取配置
@@ -153,7 +152,6 @@ class TraceManTransform extends Transform {
                 String entryName = jarEntry.getName()
                 ZipEntry zipEntry = new ZipEntry(entryName)
                 InputStream inputStream = jarFile.getInputStream(jarEntry)
-
                 if (traceConfig.isNeedTraceClass(entryName)) {
                     jarOutputStream.putNextEntry(zipEntry)
                     ClassReader classReader = new ClassReader(IOUtils.toByteArray(inputStream))
