@@ -5,6 +5,11 @@
 ## Overview
 <img src="methodtraceman.png" width:800 height:500/>
 
+### 整个项目包括三部分：
+
+1.方法耗时数据收集部分：通过gradle plugin+ASM在编译时期对所有方法进行插桩收集方法耗时数据，并进行处理
+2.方法耗时数据展示部分：在浏览器上展示方法耗时数据，并支持耗时筛选、线程筛选、方法名搜索等功能
+3.AndroidStduio插件：用于方便在AndroidStduio顶部栏上快速打开方法耗时数据展示部分【即上面说的第二部分】
 
 ## QuickStart
 
