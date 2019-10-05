@@ -1,2 +1,2 @@
-include ':app', ':tracemanui'
-//, ':tracemanplugin'
+include ':app'
+//, ':tracemanplugin', ':tracemanui'
