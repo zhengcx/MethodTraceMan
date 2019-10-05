@@ -53,6 +53,13 @@ traceMan {
     traceConfigFile = "${project.projectDir}/traceconfig.txt"
 }
 ```
+
+#### Initialize MethodTraceMan at App Startup.
+在app启动时（在Application类或者MainActivity中）对MethodTraceMan进行初始化，如下：
+```java
+MethodTraceServerManager.startService(context)
+```
+
 #### Create a file called traceconfig.txt under the root directory of app module.
 创建一个名叫'traceconfig.txt'的配置文件在app module的根目录下，并在里面对插桩范围进行配置
 下面是配置示例：
@@ -76,6 +83,12 @@ traceMan {
 ### Step2 Install Android Stduio assist plugins.(安装AndroidStduio辅助插件)
 The main function of this plugin is to quickly and easily open the UI display interface of methodtraceman.This plugin has been uploaded to Android Stduio plug-in repository. You can search for`MethodTraceMan`to install it. How to install Android Stduio plug-in is not detailed here, but you can search online.
 
-这个插件的主要功能是可以在AndroidStduio上快速方便的打开methodtraceman的UI界面，这个插件已上传AndroidStduio的插件仓库，你可以通过在AndroidStduio插件库中搜索`MethodTraceMan`来安装这个插件，当然在项目的aspluin目录下也提供了该插件的jar包，具体如何安装AndroidStduio插件，这里就不细说了，可以在网上搜索，安装好之后重启AndroidStduio，就可以在顶部栏看到MethodTraceMan插件的黄色灯泡💡下图标了，集成和安装到这里就介绍完毕了，下面我会介绍MethodTraceMan如何使用。
+这个插件的主要功能是可以在AndroidStduio上快速方便的打开methodtraceman的UI界面，这个插件已上传AndroidStduio的插件仓库，你可以通过在AndroidStduio插件库中搜索`MethodTraceMan`来安装这个插件，当然在项目的aspluin目录下也提供了该插件的jar包，具体如何安装AndroidStduio插件，这里就不细说了，可以在网上搜索，安装好之后重启AndroidStduio，就可以在顶部栏看到MethodTraceMan插件的黄色灯泡💡图标了，集成和安装到这里就介绍完毕了，下面我会介绍MethodTraceMan如何使用。
+
+安装后重启，图如下：
+
+<img src="aspluginicon.png" width:400 height:250/>
+
+### Step3 How to Use.(使用介绍)
 
 
