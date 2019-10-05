@@ -85,5 +85,9 @@ The main function of this plugin is to quickly and easily open the UI display in
 
 这个插件的主要功能是可以在AndroidStduio上快速方便的打开methodtraceman的UI界面，这个插件已上传AndroidStduio的插件仓库，你可以通过在AndroidStduio插件库中搜索`MethodTraceMan`来安装这个插件，当然在项目的aspluin目录下也提供了该插件的jar包，具体如何安装AndroidStduio插件，这里就不细说了，可以在网上搜索，安装好之后重启AndroidStduio，就可以在顶部栏看到MethodTraceMan插件的黄色灯泡💡图标了，集成和安装到这里就介绍完毕了，下面我会介绍MethodTraceMan如何使用。
 
-<img src="aspluginicon.png" width:450 height:300/>
+安装后重启，图如下：
+<img src="aspluginicon.png" width:400 height:250/>
+
+### Step3 How to Use.(使用介绍)
+
 
