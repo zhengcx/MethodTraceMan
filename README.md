@@ -90,5 +90,26 @@ The main function of this plugin is to quickly and easily open the UI display in
 <img src="aspluginicon.png" width:400 height:250/>
 
 ### Step3 How to Use.(使用介绍)
+完成上面两步后，确保已完成：
+
+1. 按要求集成后，Rebuild&Run 启动你的App
+2. AndroidStduio上已安装好MethodTraceMan插件
+
+接下来会介绍如何使用MethodTraceMan来方便的排查高耗时的方法：
+
+#### 1.将手机通过Usb连接电脑，确保连接成功。
+
+#### 2.启动APP后，此时点击AndroidStduio顶部栏的MethodTraceMan灯泡小图标，则会在浏览器上打开MethodTraceMan的UI界面如下：
+
+<img src="img/startui.png" width:600 height:350/>
+
+
+#### 3.点击“开始方法耗时统计按钮”，然后开始随意操作你的app
+<img src="img/startwork.png" width:600 height:350/>
+
+#### 4.操作完app后，点击“结束方法耗时统计”按钮，此时会输出所有方法的耗时统计，你可以进行耗时筛选、线程筛选、方法名搜索等进行筛查
+<img src="img/endwork.png" width:600 height:350/>
+
+<img src="img/result.png" width:600 height:350/>
 
 
