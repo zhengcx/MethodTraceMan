@@ -13,9 +13,9 @@
 
 ## QuickStart
 
-### Step1 Dependencies
+### step1 Dependencies
 
-#### Root Project `build.gradle`
+#### root project `build.gradle`
 
 ```groovy
 buildscript {
@@ -39,3 +39,33 @@ allprojects {
     }
 }
 ```
+
+#### app module project `build.gradle`
+
+```groovy
+dependencies {
+  implementation 'com.github.zhengcx:MethodTraceMan:1.0.4'
+}
+
+apply plugin: "cn.cxzheng.asmtraceman"
+traceMan {
+    open = true
+    traceConfigFile = "${project.projectDir}/traceconfig.txt"
+}
+```
+#### Create a file called traceconfig.txt under the root directory of app module.(创建一个名叫'traceconfig.txt'的配置文件在app module的根目录下，并在里面对插桩范围进行配置)
+下面是配置示例：
+```txt
+#配置需插桩的包,如果为空，则默认所有文件都进行插桩(config the package need to trace,If they are empty, all files are traced by default.)
+-tracepackage cn/cxzheng/asmtraceman
+
+#在需插桩的包下设置无需插桩的包(Setting up traceless packages under packages that require trace)
+-keeppackage cn/cxzheng/asmtraceman/test
+
+#在需插桩的包下设置无需插桩的类(Setting up traceless classes under packages that require trace)
+#-keepclass cn/cxzheng/asmtraceman/MainActivity
+
+#插桩代码所在类,这里固定配置为：cn/cxzheng/tracemanui/TraceMan(Fixed configuration here: cn/cxzheng/tracemanui/TraceMan)
+-beatclass cn/cxzheng/tracemanui/TraceMan
+```
+
