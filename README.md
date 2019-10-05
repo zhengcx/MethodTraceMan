@@ -13,7 +13,7 @@
 
 ## QuickStart
 
-### step1 Dependencies
+### Step1 Dependencies and Config(集成与配置)
 
 #### root project `build.gradle`
 
@@ -63,9 +63,13 @@ traceMan {
 -keeppackage cn/cxzheng/asmtraceman/test
 
 #在需插桩的包下设置无需插桩的类(Setting up traceless classes under packages that require trace)
-#-keepclass cn/cxzheng/asmtraceman/MainActivity
+-keepclass cn/cxzheng/asmtraceman/MainActivity
 
 #插桩代码所在类,这里固定配置为：cn/cxzheng/tracemanui/TraceMan(Fixed configuration here: cn/cxzheng/tracemanui/TraceMan)
 -beatclass cn/cxzheng/tracemanui/TraceMan
 ```
 
+#### then Rebuild project,all methods will be time-consuming trace.(最后，Rebuild项目并运行安装你的app,所有方法就会进行耗时插桩)
+
+### Step2 Install Android Stduio assist plugins.(安装AndroidStduio辅助插件)
+The main function of this plug-in is to quickly and easily open the UI display interface of methodtraceman.This plug-in has been uploaded to Android Stduio plug-in repository. You can search for'MethodTraceMan'to install it. How to install Android Stduio plug-in is not detailed here, but you can search online.
