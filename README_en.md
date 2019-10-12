@@ -127,4 +127,4 @@ Apache2.0.
 ## About Me
 
 - Github: [DavidSu](https://github.com/zhengcx)
-- 博客: [舒大飞](https://juejin.im/user/5a6d2293518825734a74ed4c/posts)
+- blog: [舒大飞](https://juejin.im/user/5a6d2293518825734a74ed4c/posts)
