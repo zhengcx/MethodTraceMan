@@ -18,6 +18,10 @@
 2. 方法耗时数据展示部分：在浏览器上展示方法耗时数据，并支持耗时筛选、线程筛选、方法名搜索等功能
 3. AndroidStduio插件：用于方便在AndroidStduio顶部栏上快速打开方法耗时数据展示部分【即上面说的第二部分】
 
+### 实现及原理
+详见我的博客：[App流畅度优化：利用字节码插桩实现一个快速排查高耗时方法的工具](https://juejin.im/post/5da33dc56fb9a04e35597a47)
+
+
 ## QuickStart
 
 ### Step1 集成与配置
@@ -61,9 +65,9 @@ traceMan {
 }
 ```
 
-#### 在App启动时对MethpdTraceMan进行初始化
+#### 在App启动时对MethodTraceMan进行初始化
 在app启动时（在Application类或者MainActivity中）对MethodTraceMan进行初始化，如下：
-```java
+```kotlin
 MethodTraceServerManager.startService(context)
 ```
 
@@ -81,6 +85,13 @@ MethodTraceServerManager.startService(context)
 
 #插桩代码所在类,这里固定配置为：cn/cxzheng/tracemanui/TraceMan(Fixed configuration here: cn/cxzheng/tracemanui/TraceMan)
 -beatclass cn/cxzheng/tracemanui/TraceMan
+```
+
+#### 在AndroidManifest.xml中检查是否开启了网络权限，如果没有的话，请开启网络权限
+```xml
+<uses-permission android:name="android.permission.INTERNET" />
+<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+ <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 ```
 
 #### 最后，Rebuild项目并运行安装你的app,所有方法就会进行耗时插桩
