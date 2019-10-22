@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,14 +7,28 @@
         android:layout_height="match_parent"
         tools:context=".MainActivity">
 
+    <TextView
+            android:id="@+id/tv_info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="15dp"
+            android:textColor="#333333"
+            android:layout_marginTop="100dp"
+            android:text="测试步骤：\n\n1.确保手机与电脑使用usb连接成功并打开app\n\n2.点击AndroidStduio的MethodTraceMan小灯泡插件(未安装的话请先安装)就会在浏览器上打开UI界面\n\n3.点击浏览器界面上的'开始方法耗时统计'按钮\n\n4.多次点击下面的👇 CLICK ME按钮,操作手机\n\n5.点击浏览器界面上的'结束方法耗时统计'按钮，即可看到刚刚操作的所有方法的耗时统计输出
+                          "
+            />
+
     <Button
             android:id="@+id/btn_click"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Click"
+            android:text="Click Me"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+            android:layout_below="@+id/tv_info"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
 
-</android.support.constraint.ConstraintLayout>
+</RelativeLayout>

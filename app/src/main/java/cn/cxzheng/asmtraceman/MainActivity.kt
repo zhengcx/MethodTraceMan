@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         setContentView(R.layout.activity_main)
 
+
         btn_click.setOnClickListener {
 
             val randomMill = rand(0, 30)
