@@ -129,6 +129,8 @@ MethodTraceServerManager.startService(context)
 <img src="img/result.png" width:600 height:350/>
 
 
+**注意：**
+* 请不要同时打开两个集成了此项目的App,会导致耗时数据无法传送到浏览器的UI界面
 
 ### End 欢迎Star/Fork/Issue.
 
