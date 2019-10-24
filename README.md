@@ -134,7 +134,7 @@ MethodTraceServerManager.startService(context)
 
 
 **集成及使用过程中有任何问题或者建议，欢迎与我进行交流，添加注明来意，谢谢**
-<img src="https://user-gold-cdn.xitu.io/2019/10/24/16dfd89a45f93e9a?w=430&h=430&f=jpeg&s=40614" />
+![chat](https://user-gold-cdn.xitu.io/2019/10/24/16dfd89a45f93e9a?w=430&h=430&f=jpeg&s=40614)
 
 
 ## License
