@@ -133,8 +133,8 @@ MethodTraceServerManager.startService(context)
 ### End 欢迎Star/Fork/Issue.
 
 
-**集成及使用过程中有任何问题或者建议，欢迎与我进行交流，添加注明来意，谢谢**
-![chat](https://user-gold-cdn.xitu.io/2019/10/24/16dfd89a45f93e9a?w=430&h=430&f=jpeg&s=40614)
+**集成及使用过程中有任何问题或者建议，欢迎与我进行交流，谢谢**
+
 
 
 ## License
@@ -146,3 +146,4 @@ Apache2.0.
 
 - Github: [DavidSu](https://github.com/zhengcx)
 - 博客: [舒大飞](https://juejin.im/user/5a6d2293518825734a74ed4c/posts)
+- WeChat：zcx7hao
