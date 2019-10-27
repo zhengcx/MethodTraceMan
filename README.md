@@ -55,7 +55,8 @@ allprojects {
 
 ```groovy
 dependencies {
-  implementation 'com.github.zhengcx:MethodTraceMan:1.0.4'
+  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.4'
+  releaseImplementation 'com.github.zhengcx:MethodTraceMan:1.0.5-noop'
 }
 
 apply plugin: "cn.cxzheng.asmtraceman"
@@ -64,6 +65,7 @@ traceMan {
     traceConfigFile = "${project.projectDir}/traceconfig.txt"
 }
 ```
+release包下依赖的是noop包，里面不会做任何操作，也不会增加包大小。
 
 #### 在App启动时对MethodTraceMan进行初始化
 在app启动时（在Application类或者MainActivity中）对MethodTraceMan进行初始化，如下：
