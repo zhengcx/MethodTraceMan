@@ -51,7 +51,8 @@ allprojects {
 
 ```groovy
 dependencies {
-  implementation 'com.github.zhengcx:MethodTraceMan:1.0.4'
+  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.4'
+  releaseImplementation 'com.github.zhengcx:MethodTraceMan:1.0.5-noop'
 }
 
 apply plugin: "cn.cxzheng.asmtraceman"
