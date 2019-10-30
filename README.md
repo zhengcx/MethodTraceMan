@@ -131,9 +131,10 @@ MethodTraceServerManager.startService(context)
 <img src="img/result.png" width:600 height:350/>
 
 
-**注意：**
+**注意事项：**
 * 请不要同时打开两个集成了此项目的App,会导致耗时数据无法传送到浏览器的UI界面
 * 请不要同时连接两个手机，会导致浏览器打开界面失败
+* 集成进自己的项目的话，请务必记得将traceconfig.txt中 -tracepackage配置成自己想插桩的包范围
 
 
 
