@@ -72,6 +72,10 @@ release包下依赖的是noop包，里面不会做任何操作，也不会增加
 ```kotlin
 MethodTraceServerManager.startService(context)
 ```
+**注意:** 以上是Kotlin代码，如果是java代码中，请调用：
+```java
+MethodTraceServerManager.INSTANCE.startService(context);
+```
 
 #### 在app module的根目录下创建一个名叫`traceconfig.txt`的配置文件，并在里面对插桩范围进行配置
 下面是配置示例：
@@ -88,6 +92,8 @@ MethodTraceServerManager.startService(context)
 #插桩代码所在类,这里固定配置为：cn/cxzheng/tracemanui/TraceMan(Fixed configuration here: cn/cxzheng/tracemanui/TraceMan)
 -beatclass cn/cxzheng/tracemanui/TraceMan
 ```
+
+**注意：** -tracepackage 后面是需要改成你自己项目中想配置插桩范围的包名，以斜杆分割如cn/cxzheng/asmtraceman,错误示范:cn.cxzheng.asmtraceman
 
 #### 在AndroidManifest.xml中检查是否开启了网络权限，如果没有的话，请开启网络权限
 ```xml
