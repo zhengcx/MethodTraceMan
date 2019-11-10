@@ -33,7 +33,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "gradle.plugin.cn.cxzheng.methodTracePlugin:tracemanplugin:1.0.1"
+        classpath "gradle.plugin.cn.cxzheng.methodTracePlugin:tracemanplugin:1.0.3"
     }
 }
 
@@ -51,7 +51,7 @@ allprojects {
 
 ```groovy
 dependencies {
-  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.4'
+  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.6'
   releaseImplementation 'com.github.zhengcx:MethodTraceMan:1.0.5-noop'
 }
 
