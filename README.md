@@ -55,7 +55,7 @@ allprojects {
 
 ```groovy
 dependencies {
-  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.4'
+  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.6'
   releaseImplementation 'com.github.zhengcx:MethodTraceMan:1.0.5-noop'
 }
 
