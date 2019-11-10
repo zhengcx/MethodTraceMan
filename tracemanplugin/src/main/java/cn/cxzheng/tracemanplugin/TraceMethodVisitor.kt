@@ -1,5 +1,6 @@
 package cn.cxzheng.tracemanplugin
 
+import com.android.tools.build.jetifier.core.utils.Log
 import org.objectweb.asm.MethodVisitor
 import org.objectweb.asm.commons.AdviceAdapter
 
@@ -30,15 +31,30 @@ class TraceMethodVisitor(
 
     override fun onMethodEnter() {
         super.onMethodEnter()
+        val methodName = generatorMethodName()
+        mv.visitLdcInsn(methodName)
+        mv.visitMethodInsn(
+            INVOKESTATIC,
+            traceConfig.mBeatClass,
+            "start",
+            "(Ljava/lang/String;)V",
+            false
+        )
 
-        mv.visitLdcInsn(generatorMethodName())
-        mv.visitMethodInsn(INVOKESTATIC, traceConfig.mBeatClass, "start", "(Ljava/lang/String;)V", false)
-
+        if (traceConfig.mIsNeedLogTraceInfo) {
+            println("MethodTraceMan-trace-method: ${methodName ?: "未知"}")
+        }
     }
 
     override fun onMethodExit(opcode: Int) {
         mv.visitLdcInsn(generatorMethodName())
-        mv.visitMethodInsn(INVOKESTATIC, traceConfig.mBeatClass, "end", "(Ljava/lang/String;)V", false)
+        mv.visitMethodInsn(
+            INVOKESTATIC,
+            traceConfig.mBeatClass,
+            "end",
+            "(Ljava/lang/String;)V",
+            false
+        )
     }
 
     private fun generatorMethodName(): String? {

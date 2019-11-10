@@ -5,6 +5,7 @@ import android.content.Context
 import android.net.wifi.WifiManager
 import android.os.Looper
 import android.util.Log
+import cn.cxzheng.tracemanui.utils.LogUtil
 import com.ctrip.ibu.hotel.debug.server.consumer.DataConsumer
 import com.ctrip.ibu.hotel.debug.server.handler.HttpRequestHandler
 import com.ctrip.ibu.hotel.debug.server.handler.WebScoketHandler
@@ -19,7 +20,7 @@ import com.koushikdutta.async.http.server.AsyncHttpServerResponse
  */
 object MethodTraceServerManager {
 
-    const val DEBUG_SERVER_TAG = "trace-man-server"
+    const val DEBUG_SERVER_TAG = "MethodTraceMan"
     const val DEBUG_SERVER_PORT = 5392
 
     const val APPINFO = "appInfo"
@@ -33,6 +34,11 @@ object MethodTraceServerManager {
 
     @JvmField
     var isActiveTraceMan = false
+
+    const val MTM_LOG_IMPORTANT = 1
+    const val MTM_LOG_DETAIL = 2
+
+    var logLevel = MTM_LOG_IMPORTANT
 
     init {
         dataModules[APPINFO] = AppInfoProducer()
@@ -50,10 +56,14 @@ object MethodTraceServerManager {
      */
     @Synchronized
     @JvmOverloads
-    fun startService(context: Context, port: Int = DEBUG_SERVER_PORT) {
+    fun startService(
+        context: Context,
+        port: Int = DEBUG_SERVER_PORT
+    ) {
         if (isServerRunning) {
             return
         }
+
         isServerRunning = true
 
         debugServer = TraceManServer(port)
@@ -66,8 +76,8 @@ object MethodTraceServerManager {
 
         dataConsumer?.observe()
 
-        Log.i(DEBUG_SERVER_TAG, "Trace Man Server is running")
-        Log.i(DEBUG_SERVER_TAG, "http://${getIPAddress(context)}:$port/index.html")
+        LogUtil.i("MethodTraceMan Server is running")
+        LogUtil.i("http://${getIPAddress(context)}:$port/index.html")
 
     }
 
@@ -77,14 +87,17 @@ object MethodTraceServerManager {
         val webSocketHandler = WebScoketHandler()
 
         debugServer?.serverCallback = object : TraceManServer.ServerCallback {
-            override fun onHttpRequest(request: AsyncHttpServerRequest, response: AsyncHttpServerResponse) {
+            override fun onHttpRequest(
+                request: AsyncHttpServerRequest,
+                response: AsyncHttpServerResponse
+            ) {
                 checkThread()
                 try {
                     val map = httpRequestHandler.handle(request.path)
                     response.send(map["mimeType"], map["payload"])
 
                 } catch (throwable: Throwable) {
-                    Log.e(DEBUG_SERVER_TAG, throwable.toString())
+                    LogUtil.e(throwable.toString())
                 }
             }
 
@@ -109,7 +122,7 @@ object MethodTraceServerManager {
         dataConsumer = null
 
         isServerRunning = false
-        Log.i(DEBUG_SERVER_TAG, "Trace Man Server Stopped.")
+        LogUtil.i("MethodTraceMan Server Stopped.")
     }
 
     private fun isInMainThread(): Boolean {

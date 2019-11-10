@@ -1,6 +1,7 @@
 package cn.cxzheng.tracemanui
 
 import android.util.Log
+import cn.cxzheng.tracemanui.utils.LogUtil
 import com.koushikdutta.async.AsyncServer
 import com.koushikdutta.async.callback.CompletedCallback
 import com.koushikdutta.async.http.WebSocket
@@ -40,7 +41,7 @@ class TraceManServer {
         //Http请求监听回调
         server.get("/.*[(.html)|(.css)|(.js)|(.png)|(.jpg)|(.jpeg)|(.ico)]") { request, response ->
             serverCallback?.onHttpRequest(request, response)
-            Log.i(MethodTraceServerManager.DEBUG_SERVER_TAG, "receive request")
+            LogUtil.detail("接收到浏览器请求UI界面")
         }
     }
 

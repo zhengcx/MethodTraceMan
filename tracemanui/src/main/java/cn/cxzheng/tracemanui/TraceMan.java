@@ -5,11 +5,15 @@ import android.os.Looper;
 import android.os.Trace;
 import android.support.annotation.RequiresApi;
 import android.util.Log;
+
 import com.ctrip.ibu.hotel.debug.server.producer.module.methodcost.MethodInfo;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
+
+import cn.cxzheng.tracemanui.utils.LogUtil;
+
 
 /**
  * Create by cxzheng on 2019/8/26
@@ -21,16 +25,17 @@ public class TraceMan {
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static void start(String name) {
-        Trace.beginSection(name);
         if (isOpenTraceMethod()) {
+            Trace.beginSection(name);
             methodList.add(new Entity(name, System.currentTimeMillis(), true, isInMainThread()));
         }
     }
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static void end(String name) {
-        Trace.endSection();
         if (isOpenTraceMethod()) {
+            LogUtil.detail("执行了方法:" + name);
+            Trace.endSection();
             methodList.add(new Entity(name, System.currentTimeMillis(), false, isInMainThread()));
         }
     }
@@ -67,12 +72,6 @@ public class TraceMan {
             if (startEntity != null && endEntity != null && endEntity.time - startEntity.time > 0) {
                 resultList.add(createMethodInfo(startEntity, endEntity));
             }
-        }
-
-        for (int i = 0; i < resultList.size(); i++) {
-            MethodInfo methodInfo = resultList.get(i);
-            String threadText = methodInfo.isMainThread() ? "[主线程]" : "[非主线程]";
-            Log.i("costTime", methodInfo.getName() + "  " + methodInfo.getCostTime() + "ms" + " " + threadText);
         }
 
         return resultList;

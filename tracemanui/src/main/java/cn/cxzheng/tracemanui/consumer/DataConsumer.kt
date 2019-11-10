@@ -3,9 +3,9 @@ package com.ctrip.ibu.hotel.debug.server.consumer
 import android.util.Log
 import cn.cxzheng.tracemanui.MethodTraceServerManager
 import cn.cxzheng.tracemanui.MethodTraceServerManager.APPINFO
-import cn.cxzheng.tracemanui.MethodTraceServerManager.DEBUG_SERVER_TAG
 import cn.cxzheng.tracemanui.MethodTraceServerManager.METHODCOST
 import cn.cxzheng.tracemanui.TraceManServer
+import cn.cxzheng.tracemanui.utils.LogUtil
 import com.ctrip.ibu.hotel.debug.server.model.Message
 import com.ctrip.ibu.hotel.debug.server.producer.module.appInfo.AppInfoProducer
 import com.ctrip.ibu.hotel.debug.server.producer.module.methodcost.MethodCostProducer
@@ -39,9 +39,16 @@ class DataConsumer(var server: TraceManServer) {
                 val messageEntity = Message(METHODCOST, it)
                 val message = messageEntity.toString()
                 server.sendMessage(message)
-                Log.i(DEBUG_SERVER_TAG, message)
+
+                //Log输出
+                LogUtil.i("已向浏览器发送${it.size}条方法耗时信息")
+                it.forEach { methodInfo ->
+                    val threadText = if (methodInfo.isMainThread) "[主线程]" else "[非主线程]"
+                    LogUtil.detail("方法耗时详情:" + methodInfo.name + "  " + methodInfo.costTime + "ms" + " " + threadText)
+                }
+                LogUtil.detail(message)
             }, {
-                Log.i(DEBUG_SERVER_TAG, it.message)
+                LogUtil.detail(it.message)
             })
     }
 
@@ -54,9 +61,9 @@ class DataConsumer(var server: TraceManServer) {
                 val messageEntity = Message(APPINFO, it)
                 val message = messageEntity.toString()
                 server.sendMessage(message)
-                Log.i(DEBUG_SERVER_TAG, message)
+                LogUtil.detail(message)
             }, {
-                Log.i(DEBUG_SERVER_TAG, it.message)
+                LogUtil.detail(it.message)
             })
     }
 

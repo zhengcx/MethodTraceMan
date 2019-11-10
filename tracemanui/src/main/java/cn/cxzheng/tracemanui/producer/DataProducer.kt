@@ -21,9 +21,8 @@ class DataProducer {
         }
 
         fun producerMethodCostInfo(methodCostInfo: List<MethodInfo>) {
-            if (isActiveTraceMan) {
-                MethodTraceServerManager.getModule<MethodCostProducer>(METHODCOST).produce(methodCostInfo)
-            }
+            MethodTraceServerManager.getModule<MethodCostProducer>(METHODCOST)
+                .produce(methodCostInfo)
         }
     }
 }

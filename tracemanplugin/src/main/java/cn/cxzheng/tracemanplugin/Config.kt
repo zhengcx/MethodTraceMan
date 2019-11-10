@@ -32,6 +32,9 @@ class Config {
     //插桩代码所在类
     var mBeatClass: String? = null
 
+    //是否需要打印出所有被插桩的类和方法
+    var mIsNeedLogTraceInfo = false
+
 
     fun isNeedTraceClass(fileName: String): Boolean {
         var isNeed = true
@@ -111,7 +114,8 @@ class Config {
 
         val configStr = Utils.readFileAsString(traceConfigFile.absolutePath)
 
-        val configArray = configStr.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+        val configArray =
+            configStr.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
         if (configArray != null) {
             for (i in 0 until configArray.size) {
@@ -153,8 +157,6 @@ class Config {
             }
 
         }
-
-
 
 
     }

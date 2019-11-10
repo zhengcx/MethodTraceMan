@@ -78,6 +78,7 @@ class TraceManTransform extends Transform {
         def configuration = project.traceMan
         Config config = new Config()
         config.MTraceConfigFile = configuration.traceConfigFile
+        config.MIsNeedLogTraceInfo = configuration.logTraceInfo
         return config
     }
 
