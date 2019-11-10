@@ -37,7 +37,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "gradle.plugin.cn.cxzheng.methodTracePlugin:tracemanplugin:1.0.1"
+        classpath "gradle.plugin.cn.cxzheng.methodTracePlugin:tracemanplugin:1.0.3"
     }
 }
 
@@ -61,7 +61,8 @@ dependencies {
 
 apply plugin: "cn.cxzheng.asmtraceman"
 traceMan {
-    open = true
+    open = true //这里如果设置为false,则会关闭插桩
+    logTraceInfo = false //这里设置为true时可以在log日志里看到所有被插桩的类和方法
     traceConfigFile = "${project.projectDir}/traceconfig.txt"
 }
 ```
