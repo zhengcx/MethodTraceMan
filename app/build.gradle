@@ -36,11 +36,11 @@ dependencies {
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 
-//    debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.4'
-//    releaseImplementation 'com.github.zhengcx:MethodTraceMan:1.0.5-noop'
+    debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.6'
+    releaseImplementation 'com.github.zhengcx:MethodTraceMan:1.0.5-noop'
 
 //    releaseImplementation project(':tracemanui-noop')
-    implementation project(':tracemanui')
+//    implementation project(':tracemanui')
 
 }
 
