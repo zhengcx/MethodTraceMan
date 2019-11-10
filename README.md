@@ -37,7 +37,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "gradle.plugin.cn.cxzheng.methodTracePlugin:tracemanplugin:1.0.1"
+        classpath "gradle.plugin.cn.cxzheng.methodTracePlugin:tracemanplugin:1.0.3"
     }
 }
 
@@ -61,7 +61,8 @@ dependencies {
 
 apply plugin: "cn.cxzheng.asmtraceman"
 traceMan {
-    open = true
+    open = true //这里如果设置为false,则会关闭插桩
+    logTraceInfo = false //这里设置为true时可以在log日志里看到所有被插桩的类和方法
     traceConfigFile = "${project.projectDir}/traceconfig.txt"
 }
 ```
@@ -71,6 +72,10 @@ release包下依赖的是noop包，里面不会做任何操作，也不会增加
 在app启动时（在Application类或者MainActivity中）对MethodTraceMan进行初始化，如下：
 ```kotlin
 MethodTraceServerManager.startService(context)
+```
+**注意:** 以上是Kotlin代码，如果是java代码中，请调用：
+```java
+MethodTraceServerManager.INSTANCE.startService(context);
 ```
 
 #### 在app module的根目录下创建一个名叫`traceconfig.txt`的配置文件，并在里面对插桩范围进行配置
@@ -89,6 +94,8 @@ MethodTraceServerManager.startService(context)
 -beatclass cn/cxzheng/tracemanui/TraceMan
 ```
 
+**注意：** -tracepackage 后面是需要改成你自己项目中想配置插桩范围的包名，以斜杆分割如cn/cxzheng/asmtraceman,错误示范:cn.cxzheng.asmtraceman
+
 #### 在AndroidManifest.xml中检查是否开启了网络权限，如果没有的话，请开启网络权限
 ```xml
 <uses-permission android:name="android.permission.INTERNET" />
@@ -104,6 +111,8 @@ MethodTraceServerManager.startService(context)
 这个插件的主要功能是可以在AndroidStduio上快速方便的打开methodtraceman的UI界面，这个插件已上传AndroidStduio的插件仓库，你可以通过在AndroidStduio插件库中搜索`MethodTraceMan`来安装这个插件，当然在项目的aspluin目录下也提供了该插件的jar包，具体如何安装AndroidStduio插件，这里就不细说了，可以在网上搜索，安装好之后重启AndroidStduio，就可以在顶部栏看到MethodTraceMan插件的黄色灯泡💡图标了，集成和安装到这里就介绍完毕了，下面我会介绍MethodTraceMan如何使用。
 
 安装后重启，图如下：
+
+**注意：** 如果重启AndroidStduio后在顶部栏没发现小灯泡图标，请检查AndroidStduio顶部栏View->Toolbar是否勾选上。
 
 <img src="aspluginicon.png" width:400 height:250/>
 
@@ -131,8 +140,11 @@ MethodTraceServerManager.startService(context)
 <img src="img/result.png" width:600 height:350/>
 
 
-**注意：**
+**注意事项：**
 * 请不要同时打开两个集成了此项目的App,会导致耗时数据无法传送到浏览器的UI界面
+* 请不要同时连接两个手机，会导致浏览器打开界面失败
+* 集成进自己的项目的话，请务必记得将traceconfig.txt中 -tracepackage配置成自己想插桩的包范围
+* 如果重启AndroidStduio后在顶部栏没发现小灯泡图标，请检查AndroidStduio顶部栏View->Toolbar是否勾选上
 
 
 
