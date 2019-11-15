@@ -1,7 +1,6 @@
 package cn.cxzheng.tracemanplugin
 
 import org.objectweb.asm.Opcodes
-import org.objectweb.asm.Type
 
 /**
  * Create by cxzheng on 2019/6/4
@@ -36,12 +35,6 @@ class TraceMethod {
     }
 
 
-    fun getReturn(): String? {
-        return if (desc.isNullOrEmpty()) {
-            null
-        } else Type.getReturnType(desc!!).toString()
-    }
-
 
     override fun toString(): String {
         return if (desc == null || isNativeMethod()) {
@@ -51,13 +44,6 @@ class TraceMethod {
         }
     }
 
-    fun toIgnoreString(): String {
-        return if (desc == null || isNativeMethod()) {
-            "$className $methodName"
-        } else {
-            "$className $methodName $desc"
-        }
-    }
 
     fun isNativeMethod(): Boolean {
         return accessFlag and Opcodes.ACC_NATIVE != 0
