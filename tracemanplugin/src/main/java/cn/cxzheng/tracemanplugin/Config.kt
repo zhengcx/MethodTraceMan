@@ -51,6 +51,7 @@ class Config {
         return isNeed
     }
 
+    //判断是否是traceConfig.txt中配置范围的类
     fun isConfigTraceClass(className: String): Boolean {
 
         fun isInNeedTracePackage(): Boolean {
