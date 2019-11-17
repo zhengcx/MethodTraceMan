@@ -85,10 +85,10 @@ MethodTraceServerManager.INSTANCE.startService(context);
 -tracepackage cn/cxzheng/asmtraceman
 
 #在需插桩的包下设置无需插桩的包(Setting up traceless packages under packages that require trace)
--keeppackage cn/cxzheng/asmtraceman/test
+#-keeppackage cn/cxzheng/asmtraceman/test
 
 #在需插桩的包下设置无需插桩的类(Setting up traceless classes under packages that require trace)
--keepclass cn/cxzheng/asmtraceman/MainActivity
+#-keepclass cn/cxzheng/asmtraceman/MainActivity
 
 #插桩代码所在类,这里固定配置为：cn/cxzheng/tracemanui/TraceMan(Fixed configuration here: cn/cxzheng/tracemanui/TraceMan)
 -beatclass cn/cxzheng/tracemanui/TraceMan
