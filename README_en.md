@@ -51,7 +51,7 @@ allprojects {
 
 ```groovy
 dependencies {
-  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.6'
+  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.7'
   releaseImplementation 'com.github.zhengcx:MethodTraceMan:1.0.5-noop'
 }
 
@@ -60,12 +60,6 @@ traceMan {
     open = true
     traceConfigFile = "${project.projectDir}/traceconfig.txt"
 }
-```
-
-#### Initialize MethodTraceMan at App Startup.
-in Application class or MainActivity class:
-```java
-MethodTraceServerManager.startService(context)
 ```
 
 #### Create a file called traceconfig.txt under the root directory of app module.
