@@ -55,7 +55,7 @@ allprojects {
 
 ```groovy
 dependencies {
-  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.6'
+  debugImplementation 'com.github.zhengcx:MethodTraceMan:1.0.7'
   releaseImplementation 'com.github.zhengcx:MethodTraceMan:1.0.5-noop'
 }
 
@@ -68,15 +68,6 @@ traceMan {
 ```
 release包下依赖的是noop包，里面不会做任何操作，也不会增加包大小。
 
-#### 在App启动时对MethodTraceMan进行初始化
-在app启动时（在Application类或者MainActivity中）对MethodTraceMan进行初始化，如下：
-```kotlin
-MethodTraceServerManager.startService(context)
-```
-**注意:** 以上是Kotlin代码，如果是java代码中，请调用：
-```java
-MethodTraceServerManager.INSTANCE.startService(context);
-```
 
 #### 在app module的根目录下创建一个名叫`traceconfig.txt`的配置文件，并在里面对插桩范围进行配置
 下面是配置示例：
@@ -165,6 +156,6 @@ Apache2.0.
 
 ## About Me
 
-- Github: [DavidSu](https://github.com/zhengcx)
 - 博客: [舒大飞](https://juejin.im/user/5a6d2293518825734a74ed4c/posts)
 - WeChat：zcx7hao
+- Github: [DavidSu](https://github.com/zhengcx)
