@@ -14,7 +14,6 @@ class MainActivity : AppCompatActivity() {
     private val random by lazy { Random() }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        MethodTraceServerManager.startService(applicationContext)
         MethodTraceServerManager.logLevel = MethodTraceServerManager.MTM_LOG_DETAIL
 
         setContentView(R.layout.activity_main)

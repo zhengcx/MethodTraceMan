@@ -4,13 +4,12 @@ import android.os.Build;
 import android.os.Looper;
 import android.os.Trace;
 import android.support.annotation.RequiresApi;
-import android.util.Log;
 
 import com.ctrip.ibu.hotel.debug.server.producer.module.methodcost.MethodInfo;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import cn.cxzheng.tracemanui.utils.LogUtil;
 
@@ -21,13 +20,15 @@ import cn.cxzheng.tracemanui.utils.LogUtil;
  */
 public class TraceMan {
 
-    private static CopyOnWriteArrayList<Entity> methodList = new CopyOnWriteArrayList();
+    private static List<Entity> methodList = new LinkedList<>();
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR2)
     public static void start(String name) {
         if (isOpenTraceMethod()) {
             Trace.beginSection(name);
-            methodList.add(new Entity(name, System.currentTimeMillis(), true, isInMainThread()));
+            synchronized (methodList) {
+                methodList.add(new Entity(name, System.currentTimeMillis(), true, isInMainThread()));
+            }
         }
     }
 
@@ -36,7 +37,9 @@ public class TraceMan {
         if (isOpenTraceMethod()) {
             LogUtil.detail("执行了方法:" + name);
             Trace.endSection();
-            methodList.add(new Entity(name, System.currentTimeMillis(), false, isInMainThread()));
+            synchronized (methodList) {
+                methodList.add(new Entity(name, System.currentTimeMillis(), false, isInMainThread()));
+            }
         }
     }
 
@@ -53,28 +56,31 @@ public class TraceMan {
 
 
     public static void resetTraceManData() {
-        methodList.clear();
+        synchronized (methodList) {
+            methodList.clear();
+        }
     }
 
     /**
      * 处理插桩数据，按顺序获取所有方法耗时
      */
     public static List<MethodInfo> obtainMethodCostData() {
-        List<MethodInfo> resultList = new ArrayList();
-        for (int i = 0; i < methodList.size(); i++) {
-            Entity startEntity = methodList.get(i);
-            if (!startEntity.isStart) {
-                continue;
-            }
-            startEntity.pos = i;
-            Entity endEntity = findEndEntity(startEntity.name, i + 1);
+        synchronized (methodList) {
+            List<MethodInfo> resultList = new ArrayList();
+            for (int i = 0; i < methodList.size(); i++) {
+                Entity startEntity = methodList.get(i);
+                if (!startEntity.isStart) {
+                    continue;
+                }
+                startEntity.pos = i;
+                Entity endEntity = findEndEntity(startEntity.name, i + 1);
 
-            if (startEntity != null && endEntity != null && endEntity.time - startEntity.time > 0) {
-                resultList.add(createMethodInfo(startEntity, endEntity));
+                if (startEntity != null && endEntity != null && endEntity.time - startEntity.time > 0) {
+                    resultList.add(createMethodInfo(startEntity, endEntity));
+                }
             }
+            return resultList;
         }
-
-        return resultList;
     }
 
     /**
