@@ -37,7 +37,7 @@ buildscript {
         maven { url "https://plugins.gradle.org/m2/" }
     }
     dependencies {
-        classpath "gradle.plugin.cn.cxzheng.methodTracePlugin:tracemanplugin:1.0.3"
+        classpath "gradle.plugin.cn.cxzheng.methodTracePlugin:tracemanplugin:1.0.4"
     }
 }
 
