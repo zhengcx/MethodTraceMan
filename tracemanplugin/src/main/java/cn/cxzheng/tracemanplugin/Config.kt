@@ -111,7 +111,12 @@ class Config {
         System.out.println("parseTraceConfigFile start!!!!!!!!!!!!")
         val traceConfigFile = File(mTraceConfigFile)
         if (!traceConfigFile.exists()) {
-            System.out.println("trace config file not exist")
+            throw FileNotFoundException(
+                """
+                    Trace config file not exist, Please read quickstart.
+                    找不到 $mTraceConfigFile 配置文件, 尝试阅读一下 QuickStart。
+                """.trimIndent()
+            )
         }
 
         val configStr = Utils.readFileAsString(traceConfigFile.absolutePath)
