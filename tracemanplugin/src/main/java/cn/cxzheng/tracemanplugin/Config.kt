@@ -108,6 +108,7 @@ class Config {
      */
     fun parseTraceConfigFile() {
 
+        System.out.println("parseTraceConfigFile start!!!!!!!!!!!!")
         val traceConfigFile = File(mTraceConfigFile)
         if (!traceConfigFile.exists()) {
             System.out.println("trace config file not exist")
@@ -116,7 +117,7 @@ class Config {
         val configStr = Utils.readFileAsString(traceConfigFile.absolutePath)
 
         val configArray =
-            configStr.split("\n".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
+            configStr.split(System.lineSeparator().toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
 
         if (configArray != null) {
             for (i in 0 until configArray.size) {

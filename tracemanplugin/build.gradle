@@ -33,7 +33,7 @@ repositories {
     jcenter()
 }
 
-version = "1.0.3"    //配置插件的版本号
+version = "1.0.4"    //配置插件的版本号
 group = "cn.cxzheng.methodTracePlugin"   //插件的群组，插件的classpath会用到
 
 pluginBundle {
