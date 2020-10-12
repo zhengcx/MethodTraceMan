@@ -19,7 +19,7 @@
 3. AndroidStduio插件：用于方便在AndroidStduio顶部栏上快速打开方法耗时数据展示部分【即上面说的第二部分】
 
 ### 实现及原理
-详见我的博客：[App流畅度优化：利用字节码插桩实现一个快速排查高耗时方法的工具](https://juejin.im/post/5da33dc56fb9a04e35597a47)
+详见我的博客：[App流畅度优化：利用字节码插桩实现一个快速排查高耗时方法的工具](https://juejin.im/post/6844903975142047758)
 
 
 ## QuickStart
