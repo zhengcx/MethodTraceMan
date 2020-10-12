@@ -156,6 +156,5 @@ Apache2.0.
 
 ## About Me
 
-- 公众号：「大飞频道」
 - 博客: [舒大飞](https://juejin.im/user/5a6d2293518825734a74ed4c/posts)
 - Github: [DavidSu](https://github.com/zhengcx)
