@@ -141,6 +141,16 @@ release包下依赖的是noop包，里面不会做任何操作，也不会增加
 * 集成进自己的项目的话，请务必记得将traceconfig.txt中 -tracepackage配置成自己想插桩的包范围
 * 如果重启AndroidStduio后在顶部栏没发现小灯泡图标，请检查AndroidStduio顶部栏View->Toolbar是否勾选上
 
+**若升级AndroidStduio4.x后安装此plugin报错提示：Plugin is incompatible (supported only in IntelliJ IDEA).**
+
+解决方案：
+
+1.cd到AndroidStduio安装目录下的plugins文件夹下，如/Users/xxx/Library/ApplicationSupport/Google/AndroidStudio4.x/plugins
+
+2.删除此文件夹下的methodtraceman-plugin.jar
+
+3.重启AndroidStduio，重新安装此插件即可。
+
 
 
 ## End 欢迎Star/Fork/Issue.
